@@ -1,0 +1,206 @@
+@font-face {
+    font-family: 'Corduroy';
+    src: local('Corduroy'), local('Corduroy-Regular'),
+    url('../fonts/corduroy.woff2') format('woff2'),
+    url('../fonts/corduroy.woff') format('woff'),
+    url('../fonts/corduroy.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    background: url("../images/colorful-squares.jpg") no-repeat fixed;
+    background-size: cover;
+    padding: 3% 5%;
+    margin: 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ----------------- Common applicationResources ----------------- */
+.main, .block, .menu {
+    margin: 0 0;
+    padding: 0 0;
+}
+
+.shadow {
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+}
+
+.block {
+    min-height: 50vh;
+    padding-top: 3%;
+}
+
+.main, .header, .footer {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.90);
+}
+
+.tabs, .tabContainer, .newsBlock, .menu, .newsBlock div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+
+/* ----------------- Main block  ----------------- */
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    width: 100%;
+    background: url("../images/Vector-Wallpaper.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+
+/* ----------------- Tabs settings ----------------- */
+.tabContainer {
+    width: 90%;
+}
+
+.tabContainer a {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-size: cover;
+    transition-duration: 1s;
+
+    width: 30%;
+    margin: 0 1%;
+    padding-bottom: 1%;
+
+    background-image: url("../images/blue.jpg");
+}
+
+.tab:hover {
+    transform: scale(1.2);
+    z-index: 100;
+}
+
+.tab .tabContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    min-height: 50%;
+    background-color: rgba(200, 200, 200, 0.7);
+}
+
+/* ----------------- News block settings ----------------- */
+
+
+.newsContainer {
+    width: 100%;
+}
+
+.newsContainer div {
+    padding: 2% 2%;
+}
+
+.newsContainer .title {
+    flex-grow: 1;
+    background-color: rgba(126, 0, 82, 0.8);
+}
+
+.newsContainer .news {
+    flex-grow: 2;
+    background-color: rgba(210, 13, 43, 0.8);
+}
+
+/* ----------------- Feedback settings ----------------- */
+.feedback {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 2%;
+}
+
+.map {
+    min-width: 45%;
+    border: solid rgba(132, 40, 127, 0.7) 2px;
+}
+
+/* ----------------- Form settings ----------------- */
+.formBlock form {
+    width: 100%;
+    padding: 5% 5%;
+}
+
+.formBlock form legend {
+    font-size: 3em;
+}
+
+.formBlock input, .formBlock textarea {
+    margin: 3% 0;
+    width: 100%;
+}
+
+.formBlock input {
+    border: none;
+    border-bottom: rgba(132, 40, 127, 0.7) solid 1px;
+    min-height: 25px;
+}
+
+.formBlock textarea {
+    min-height: 100px;
+    resize: none;
+}
+
+/* ----------------- Header and menu ----------------- */
+.header {
+    padding: 0 0;
+    margin-bottom: 2%;
+}
+
+
+.menuContainer {
+    width: 100%;
+    background-image: url("../images/color.jpg");
+    background-size: cover;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu a {
+    padding: 3% 5%;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 2em;
+    font-family: 'Corduroy';
+    text-shadow: black 2px 2px;
+    display: flex;
+    align-content: center;
+    transition-duration: 1s;
+}
+.menu a:hover {
+    color: #ffd741;
+    transform: scale(1.1);
+}
+.menu a li {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* ----------------- Footer ----------------- */
+.footer {
+    padding: 0 0;
+    margin-top: 2%;
+    height: 100px;
+    background-image: url("../images/Vector-Wallpaper.jpg");
+}

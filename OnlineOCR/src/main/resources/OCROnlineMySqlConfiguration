@@ -1,0 +1,27 @@
+create table user (
+    u_id int not null auto_increment unique,
+    u_login varchar(50) not null unique,
+    u_name varchar(30) not null,
+    u_lastName varchar(50),
+    u_country int,
+    u_city int,
+    u_email varchar(100) not null unique,
+    u_birthday date,
+    u_passwordHash varchar(200) not null,
+    primary key (u_id),
+    foreign key (u_country) references country(c_id),
+    foreign key (u_city) references city(ct_id)
+);
+
+create table country (
+    c_id int not null unique auto_increment,
+    c_value varchar(100) not null unique,
+    primary key (c_id)
+);
+
+create table city (
+    ct_id int not null unique auto_increment,
+    ct_value varchar(100) not null unique,
+    primary key (ct_id)
+);
+
