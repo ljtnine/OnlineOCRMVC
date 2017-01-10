@@ -25,3 +25,6 @@ create table city (
     primary key (ct_id)
 );
 
+
+INSERT INTO user (u_login, u_name, u_lastName, u_email, u_passwordHash)
+VALUES ("Nick", "Nick", "Ryan", "NickRyan@ocr.com", "hash");

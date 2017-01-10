@@ -9,6 +9,8 @@
     <context:component-scan base-package="com.onlineocr.nick"/>
     <mvc:annotation-driven/>
     <mvc:resources mapping="/resources/**" location="/resources/"/> <!-- static resources -->
+    <import resource="applicationContext.xml"/>
+    <import resource="Hibernate-context.xml"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value=""/>

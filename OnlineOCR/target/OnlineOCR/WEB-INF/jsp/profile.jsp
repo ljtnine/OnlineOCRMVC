@@ -16,10 +16,10 @@
   </div>
   <div class="main">
     <div class="profile">
+      <span>${user.login}</span> <br>
       <span>${user.name}</span> <br>
       <span>${user.lastName}</span><br>
       <span>${user.id}</span><br>
-      <span>${user.birthday}</span><br>
     </div>
   </div>
   <div class="footer">

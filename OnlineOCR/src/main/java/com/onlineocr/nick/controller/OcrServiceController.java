@@ -1,7 +1,10 @@
 package com.onlineocr.nick.controller;
 
 
+import com.onlineocr.nick.DAO.UserService;
+import com.onlineocr.nick.model.User;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +24,8 @@ import java.nio.file.Paths;
 @Controller
 public class OcrServiceController {
     private static final Logger logger = Logger.getLogger(OcrServiceController.class);
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -57,7 +62,9 @@ public class OcrServiceController {
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView jspPage() {
         logger.debug("Profile is executed!");
+        User user = userService.getById(1);
         ModelAndView model = new ModelAndView("/WEB-INF/jsp/profile.jsp");
+        model.addObject("user", user);
         return model;
     }
 

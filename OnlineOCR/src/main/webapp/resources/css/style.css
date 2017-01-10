@@ -23,7 +23,7 @@ body {
     justify-content: center;
 }
 
-/* ----------------- Common applicationResources ----------------- */
+/* ----------------- Common properties ----------------- */
 .main, .block, .menu {
     margin: 0 0;
     padding: 0 0;

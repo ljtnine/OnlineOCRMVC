@@ -1,6 +1,8 @@
 package com.onlineocr.nick.DAO;
 
 import com.onlineocr.nick.model.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -10,9 +12,10 @@ import java.util.List;
 public interface UserDAO {
     void save(User user);
     void delete(User user);
-    void deleteById(Long id);
-    void updateById(Long id);
+    void deleteById(long id);
+    void updateById(long id);
     void update(User user);
-    List<User> selectAll();
-    User selectById(Long id);
+    List<User> getAll();
+    User getById(long id);
+    Session getCurrentSession();
 }
