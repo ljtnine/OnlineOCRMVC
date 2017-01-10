@@ -40,13 +40,11 @@ public class User {
     private Date birthday;
 
     @ManyToOne
-    @JoinTable(name = "country")
-    @JoinColumn(name = "c_id")
+    @JoinColumn(name = "u_country")
     private Country country;
 
     @ManyToOne
-    @JoinTable(name = "city")
-    @JoinColumn(name = "ct_id")
+    @JoinColumn(name = "u_city")
     private City city;
 
     public User() {

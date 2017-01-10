@@ -1,12 +1,23 @@
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+/* ----------------- Fonts             ----------------- */
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
 @font-face {
     font-family: 'Corduroy';
     src: local('Corduroy'), local('Corduroy-Regular'),
-    url('../fonts/corduroy.woff2') format('woff2'),
-    url('../fonts/corduroy.woff') format('woff'),
-    url('../fonts/corduroy.ttf') format('truetype');
+    url('/resources/fonts/corduroy.woff2') format('woff2'),
+    url('/resources/fonts/corduroy.woff') format('woff'),
+    url('/resources/fonts/corduroy.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
+
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+/* ----------------- Common properties ----------------- */
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
 
 * {
     box-sizing: border-box;
@@ -14,7 +25,7 @@
 
 
 body {
-    background: url("../images/colorful-squares.jpg") no-repeat fixed;
+    background: url("/resources/images/colorful-squares.jpg") no-repeat fixed;
     background-size: cover;
     padding: 3% 5%;
     margin: 0 0;
@@ -23,7 +34,11 @@ body {
     justify-content: center;
 }
 
-/* ----------------- Common properties ----------------- */
+.main, .header, .footer {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.90);
+}
+
 .main, .block, .menu {
     margin: 0 0;
     padding: 0 0;
@@ -35,14 +50,10 @@ body {
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
 }
 
+
 .block {
     min-height: 50vh;
     padding-top: 3%;
-}
-
-.main, .header, .footer {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.90);
 }
 
 .tabs, .tabContainer, .newsBlock, .menu, .newsBlock div {
@@ -51,9 +62,67 @@ body {
     justify-content: center;
 }
 
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+/* ----------------- Header & menu     ----------------- */
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+.header {
+    padding: 0 0;
+    margin-bottom: 2%;
+}
 
 
-/* ----------------- Main block  ----------------- */
+.menuContainer {
+    width: 100%;
+    background-image: url("/resources/images/color.jpg");
+    background-size: cover;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu a {
+    padding: 3% 5%;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 2em;
+    font-family: 'Corduroy';
+    text-shadow: black 2px 2px;
+    display: flex;
+    align-content: center;
+    transition-duration: 1s;
+}
+.menu a:hover {
+    color: #ffd741;
+    transform: scale(1.1);
+}
+.menu a li {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+/* ----------------- Footer            ----------------- */
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+.footer {
+    padding: 0 0;
+    margin-top: 2%;
+    height: 100px;
+    background-image: url("/resources/images/Vector-Wallpaper.jpg");
+}
+
+
+
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+/* ----------------- Index.html        ----------------- */
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
 .main {
     display: flex;
     flex-direction: column;
@@ -62,7 +131,7 @@ body {
 
 .logo {
     width: 100%;
-    background: url("../images/Vector-Wallpaper.jpg") no-repeat;
+    background: url("/resources/images/Vector-Wallpaper.jpg") no-repeat;
     background-size: 100% 100%;
 }
 
@@ -82,7 +151,7 @@ body {
     margin: 0 1%;
     padding-bottom: 1%;
 
-    background-image: url("../images/blue.jpg");
+    background-image: url("/resources/images/blue.jpg");
 }
 
 .tab:hover {
@@ -159,48 +228,31 @@ body {
     resize: none;
 }
 
-/* ----------------- Header and menu ----------------- */
-.header {
-    padding: 0 0;
-    margin-bottom: 2%;
-}
 
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+/* ----------------- registration.html ----------------- */
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
 
-.menuContainer {
-    width: 100%;
-    background-image: url("../images/color.jpg");
-    background-size: cover;
-}
-
-.menu {
-    list-style: none;
-}
-
-.menu a {
-    padding: 3% 5%;
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 2em;
-    font-family: 'Corduroy';
-    text-shadow: black 2px 2px;
+.registration {
     display: flex;
-    align-content: center;
-    transition-duration: 1s;
-}
-.menu a:hover {
-    color: #ffd741;
-    transform: scale(1.1);
-}
-.menu a li {
-    width: 100%;
-    height: 100%;
-    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5% 5%;
 }
 
-/* ----------------- Footer ----------------- */
-.footer {
-    padding: 0 0;
-    margin-top: 2%;
-    height: 100px;
-    background-image: url("../images/Vector-Wallpaper.jpg");
+.registration div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5% 0;
+}
+
+.registration div label {
+    margin-right: 3%;
+}
+
+.registration input {
+    margin-bottom: 5%;
 }

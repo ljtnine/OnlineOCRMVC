@@ -1,9 +1,8 @@
 package com.onlineocr.nick.controller;
 
 
-import com.onlineocr.nick.DAO.UserService;
+import com.onlineocr.nick.DAO.UserDAO;
 import com.onlineocr.nick.model.User;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,19 +22,18 @@ import java.nio.file.Paths;
 
 @Controller
 public class OcrServiceController {
-    private static final Logger logger = Logger.getLogger(OcrServiceController.class);
+   // private static final Logger logger = Logger.getLogger(OcrServiceController.class);
     @Autowired
-    private UserService userService;
+    private UserDAO userService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
-        logger.debug("Index is executed!");
-        return new ModelAndView("/resources/pages/index.html");
+        return new ModelAndView("index");
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public ModelAndView test() {
-        return new ModelAndView("/resources/pages/test.html");
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public ModelAndView registration() {
+        return new ModelAndView("registration");
     }
 
     @RequestMapping(value = "/download", method = RequestMethod.GET)
@@ -61,9 +59,9 @@ public class OcrServiceController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView jspPage() {
-        logger.debug("Profile is executed!");
+      //  logger.debug("Profile is executed!");
         User user = userService.getById(1);
-        ModelAndView model = new ModelAndView("/WEB-INF/jsp/profile.jsp");
+        ModelAndView model = new ModelAndView("profile");
         model.addObject("user", user);
         return model;
     }
