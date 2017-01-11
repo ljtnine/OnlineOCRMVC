@@ -1,8 +1,7 @@
 package com.onlineocr.nick.DAO;
 
-import com.onlineocr.nick.model.User;
+import com.onlineocr.nick.model.entity.User;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 

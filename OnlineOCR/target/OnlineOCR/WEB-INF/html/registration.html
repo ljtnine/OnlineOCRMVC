@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Online OCR Service</title>
+    <title>Registration</title>
     <link rel="stylesheet" href="resources/css/style.css">
+    <script src="resources/js/ocrScript.js"></script>
 </head>
 
 <body>
@@ -17,7 +18,7 @@
             <a href=""><li>OCR</li></a>
             <a href=""><li>LOGO</li></a>
             <a href=""><li>Apps</li></a>
-            <a href="registration"><li>Profile</li></a>
+            <a href="registration"><li>Registration</li></a>
         </ul>
     </div>
 
@@ -25,7 +26,7 @@
 
 <div class="main shadow">
     <div class="registration">
-        <form action="profile" method="post">
+        <form action="profile" method="post" name="registration">
             <div>
                 <label for="login">Login</label>
                 <input  type="text" id="login" name="login" required>
@@ -72,7 +73,7 @@
             </div>
 
             <div>
-                <input  type="submit"id="submit">
+                <button type="button" id="register">Register</button>
             </div>
         </form>
     </div>

@@ -2,7 +2,8 @@ package com.onlineocr.nick.controller;
 
 
 import com.onlineocr.nick.DAO.UserDAO;
-import com.onlineocr.nick.model.User;
+import com.onlineocr.nick.model.actions.ServiceClass;
+import com.onlineocr.nick.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,8 @@ public class OcrServiceController {
    // private static final Logger logger = Logger.getLogger(OcrServiceController.class);
     @Autowired
     private UserDAO userService;
+    @Autowired
+    private ServiceClass serviceClass;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -57,10 +60,19 @@ public class OcrServiceController {
         }
     }
 
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ModelAndView jspPage() {
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public ModelAndView profile(HttpServletRequest request) {
       //  logger.debug("Profile is executed!");
-        User user = userService.getById(1);
+        User user = new User();
+        user.setName(request.getParameter("name"));
+        user.setPasswordHash(request.getParameter("password"));
+        user.setEmail(request.getParameter("email"));
+        user.setLogin(request.getParameter("login"));
+        user.setId(new Long(2));
+
+        serviceClass.sendEmail(user);
+        serviceClass.encryptPassword(user);
+
         ModelAndView model = new ModelAndView("profile");
         model.addObject("user", user);
         return model;
