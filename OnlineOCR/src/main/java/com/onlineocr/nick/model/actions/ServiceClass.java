@@ -1,13 +1,9 @@
 package com.onlineocr.nick.model.actions;
 
 import com.onlineocr.nick.model.entity.User;
-import org.springframework.stereotype.Component;
-
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
@@ -15,33 +11,38 @@ import java.util.Properties;
 /**
  * Created by GrIfOn on 12.01.2017.
  */
-@Component
+@Service
 public class ServiceClass {
+    private JavaMailSenderImpl sender;
+
     public void sendEmail(User user) {
+        sender = new JavaMailSenderImpl();
         Properties properties = new Properties();
-        properties.put("mail.transport.protocol", "smtps");
-        properties.put("mail.smtps.auth", "true");
-        properties.put("mail.smtps.host", "smtp.gmail.com");
-        properties.put("mail.smtps.user", System.getenv("email"));
-
-        Session session = Session.getDefaultInstance(properties);
-
-        MimeMessage message = new MimeMessage(session);
-        try {
-            message.setFrom(new InternetAddress(System.getenv("email")));
-            message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(user.getEmail()));
-            message.setSubject("Testing Subject");
-            message.setText("Hello! \n\n No spam to my email, please!");
+        properties.put("mail.transport.protocol", "smtp");
+        properties.put("mail.smtp.socketFactory.fallback", "true"); // Should be true
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.debug", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.user", System.getenv("email"));
 
 
-            Transport transport = session.getTransport();
-            transport.connect(null, System.getenv("pass"));
-            transport.sendMessage(message, message.getAllRecipients());
-            transport.close();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+
+        sender.setJavaMailProperties(properties);
+        sender.setHost("smtp.gmail.com");
+        sender.setPort(587);
+        sender.setUsername(System.getenv("email"));
+        sender.setPassword(System.getenv("pass"));
+
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(System.getenv("email"));
+        message.setTo(user.getEmail());
+        message.setSubject("Hello!");
+        message.setText("Hola mi amigo! ^_^");
+        sender.send(message);
     }
+
 
     public void encryptPassword(User user) {
         try {

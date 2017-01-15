@@ -1,9 +1,12 @@
 package com.onlineocr.nick.model.entity;
 
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -41,10 +44,12 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "u_country")
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Country country;
 
     @ManyToOne
     @JoinColumn(name = "u_city")
+    @Cascade(CascadeType.SAVE_UPDATE)
     private City city;
 
     public User() {
@@ -120,5 +125,16 @@ public class User {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
+                '}';
     }
 }

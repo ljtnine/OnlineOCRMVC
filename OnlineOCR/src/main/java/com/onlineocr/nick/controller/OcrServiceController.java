@@ -4,6 +4,7 @@ package com.onlineocr.nick.controller;
 import com.onlineocr.nick.DAO.UserDAO;
 import com.onlineocr.nick.model.actions.ServiceClass;
 import com.onlineocr.nick.model.entity.User;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ import java.nio.file.Paths;
 
 @Controller
 public class OcrServiceController {
-   // private static final Logger logger = Logger.getLogger(OcrServiceController.class);
+    private static final Logger logger = Logger.getLogger(OcrServiceController.class);
     @Autowired
     private UserDAO userService;
     @Autowired
@@ -31,6 +32,7 @@ public class OcrServiceController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
+        logger.info("Index page is opened");
         return new ModelAndView("index");
     }
 
@@ -40,9 +42,7 @@ public class OcrServiceController {
     }
 
     @RequestMapping(value = "/download", method = RequestMethod.GET)
-    public void downloadPDFResource( HttpServletRequest request,
-                                     HttpServletResponse response)
-    {
+    public void downloadPDFResource( HttpServletRequest request, HttpServletResponse response) {
         String dataDirectory = request.getServletContext().getRealPath("/WEB-INF/downloads/");
         Path file = Paths.get(dataDirectory, "ml.pdf");
         if (Files.exists(file))
@@ -62,14 +62,17 @@ public class OcrServiceController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
     public ModelAndView profile(HttpServletRequest request) {
-      //  logger.debug("Profile is executed!");
+        logger.info("Profile page is opened");
+        logger.info("Creating a new user . . .");
         User user = new User();
         user.setName(request.getParameter("name"));
         user.setPasswordHash(request.getParameter("password"));
         user.setEmail(request.getParameter("email"));
         user.setLogin(request.getParameter("login"));
         user.setId(new Long(2));
+        logger.info("User created");
 
+        logger.info("Sending email");
         serviceClass.sendEmail(user);
         serviceClass.encryptPassword(user);
 
