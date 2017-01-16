@@ -1,23 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="resources/css/style.css">
     <title>Profile</title>
 </head>
+
 <body>
-<div class="header">
+
+<div class="header shadow">
+
+    <div class="menuContainer">
+        <ul class="menu">
+            <a href="/"><li>Home</li></a>
+            <a href=""><li>OCR</li></a>
+            <a href=""><li>LOGO</li></a>
+            <a href=""><li>Apps</li></a>
+            <a href="profile"><li>Profile</li></a>
+        </ul>
+    </div>
 
 </div>
-<div class="main">
-    <div class="profile">
-        <span th:text="${user.login}"></span> <br>
-        <span th:text="${user.name}"></span> <br>
-        <span th:text="${user.id}"></span><br>
-        <span th:text="${user.email}"></span><br>
-        <span th:text="${user.passwordHash}"></span><br>
+
+<div class="main shadow profile">
+    <div class="generalInfo">
+        <div class="avatar">
+            <img src="" alt="Avatar">
+        </div>
+        <div>
+            <p>Info - login</p>
+            <p>Info - Name</p>
+            <p>Info - birthday</p>
+            <p>Info - registration date</p>
+        </div>
+        <div>
+            <ul class="profileMenu">
+                <li> <a href="">Profile info</a> </li>
+                <li> <a href="">Statistics</a> </li>
+                <li> <a href="">History</a> </li>
+                <li> <a href="">Friends</a> </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        Activity
     </div>
 </div>
-<div class="footer">
 
-</div>
+
+<div class="footer shadow"></div>
+
 </body>
 </html>
+
+<!--
+<span th:text="${user.login}"></span> <br>
+<span th:text="${user.name}"></span> <br>
+<span th:text="${user.id}"></span><br>
+<span th:text="${user.email}"></span><br>
+<span th:text="${user.passwordHash}"></span><br> -->
+

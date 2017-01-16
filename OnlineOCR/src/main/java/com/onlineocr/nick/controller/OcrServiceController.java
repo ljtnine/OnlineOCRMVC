@@ -60,9 +60,18 @@ public class OcrServiceController {
         }
     }
 
-    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView profile(HttpServletRequest request) {
+
         logger.info("Profile page is opened");
+
+        ModelAndView model = new ModelAndView("profile");
+        //model.addObject("user", user);
+        return model;
+    }
+
+    @RequestMapping(value = "/user/{username}", method = RequestMethod.POST)
+    public ModelAndView a(HttpServletRequest request) {
         logger.info("Creating a new user . . .");
         User user = new User();
         user.setName(request.getParameter("name"));
@@ -76,9 +85,7 @@ public class OcrServiceController {
         serviceClass.sendEmail(user);
         serviceClass.encryptPassword(user);
 
-        ModelAndView model = new ModelAndView("profile");
-        model.addObject("user", user);
-        return model;
+        return new ModelAndView("profile");
     }
 
 }

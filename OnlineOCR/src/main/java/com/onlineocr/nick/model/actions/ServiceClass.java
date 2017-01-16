@@ -18,19 +18,17 @@ public class ServiceClass {
     public void sendEmail(User user) {
         sender = new JavaMailSenderImpl();
         Properties properties = new Properties();
-        properties.put("mail.transport.protocol", "smtp");
-        properties.put("mail.smtp.socketFactory.fallback", "true"); // Should be true
-        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.protocol", "smtps");
+        properties.put("mail.host", "smtp.gmail.com");
+        properties.put("mail.smtps.auth", "true");
         properties.put("mail.debug", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.user", System.getenv("email"));
+
+        properties.put("mail.user", System.getenv("email"));
 
 
 
         sender.setJavaMailProperties(properties);
-        sender.setHost("smtp.gmail.com");
-        sender.setPort(587);
+        sender.setPort(465);
         sender.setUsername(System.getenv("email"));
         sender.setPassword(System.getenv("pass"));
 
