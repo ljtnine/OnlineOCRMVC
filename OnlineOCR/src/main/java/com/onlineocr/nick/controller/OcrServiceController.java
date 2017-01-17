@@ -2,13 +2,16 @@ package com.onlineocr.nick.controller;
 
 
 import com.onlineocr.nick.DAO.UserDAO;
+import com.onlineocr.nick.DAO.UserService;
 import com.onlineocr.nick.model.actions.ServiceClass;
 import com.onlineocr.nick.model.entity.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +26,9 @@ import java.nio.file.Paths;
  */
 
 @Controller
+@SessionAttributes(types = User.class)
 public class OcrServiceController {
+
     private static final Logger logger = Logger.getLogger(OcrServiceController.class);
     @Autowired
     private UserDAO userService;
@@ -31,18 +36,26 @@ public class OcrServiceController {
     private ServiceClass serviceClass;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView index() {
+    public String index() {
         logger.info("Index page is opened");
-        return new ModelAndView("index");
+        return "index";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public ModelAndView registration() {
-        return new ModelAndView("registration");
+    public String registration(User user) {
+        logger.info("Registration page is opened");
+        if(user.getId() == null) {
+            logger.info("User is null");
+            return "registration";
+        }
+        else {
+            logger.info("User is already saved in session");
+            return "redirect:/profile";
+        }
     }
 
     @RequestMapping(value = "/download", method = RequestMethod.GET)
-    public void downloadPDFResource( HttpServletRequest request, HttpServletResponse response) {
+    public void downloadPDFResource(HttpServletRequest request, HttpServletResponse response) {
         String dataDirectory = request.getServletContext().getRealPath("/WEB-INF/downloads/");
         Path file = Paths.get(dataDirectory, "ml.pdf");
         if (Files.exists(file))
@@ -61,17 +74,13 @@ public class OcrServiceController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ModelAndView profile(HttpServletRequest request) {
-
+    public String profile() {
         logger.info("Profile page is opened");
-
-        ModelAndView model = new ModelAndView("profile");
-        //model.addObject("user", user);
-        return model;
+        return "profile";
     }
 
-    @RequestMapping(value = "/user/{username}", method = RequestMethod.POST)
-    public ModelAndView a(HttpServletRequest request) {
+    @RequestMapping(value = "/registered", method = RequestMethod.POST)
+    public ModelAndView newUser(HttpServletRequest request) {
         logger.info("Creating a new user . . .");
         User user = new User();
         user.setName(request.getParameter("name"));
@@ -81,11 +90,12 @@ public class OcrServiceController {
         user.setId(new Long(2));
         logger.info("User created");
 
-        logger.info("Sending email");
-        serviceClass.sendEmail(user);
-        serviceClass.encryptPassword(user);
+        //logger.info("Sending email");
+        //serviceClass.sendEmail(user);
+        //serviceClass.encryptPassword(user);
 
-        return new ModelAndView("profile");
+        ModelAndView modelAndView = new ModelAndView("registered");
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
-
 }

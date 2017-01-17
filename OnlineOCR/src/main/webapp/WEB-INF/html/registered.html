@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Refresh" content="5; url=/" />
+    <link rel="stylesheet" href="resources/css/style.css">
+    <title>Thank you for registration!</title>
+</head>
+<body>
+<div class="main greeting shadow">
+    <p>Thank you for registering!</p>
+    <p>Account <span th:text="${user.login}">{username}</span> has been created.</p>
+    <p>Please, confirm your email address.</p>
+    <p>Special message is already sent on your email.</p>
+    <a href="/">You will be automatically redirected to your main page. If after few seconds you will not be redirected, please, click on this link.</a>
+    </span>
+</div>
+</body>
+</html>

@@ -275,3 +275,60 @@ body {
 .invalid {
     border: solid rgba(255, 0, 12, 0.81) 2px !important;
 }
+
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+/* ----------- After registration (registered.html) ---- */
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+
+.greeting {
+    min-height: 50vh;
+    margin: 5% 0;
+    justify-content: center;
+    text-align: center;
+    padding: 2% 2%;
+}
+
+.greeting p {
+    font-size: 1.5em;
+}
+
+.greeting p:nth-child(1) {
+    font-size: 3em;
+}
+
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+/* ----------------- Profile.html ---------------------- */
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+
+.profile {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.profile div {
+    border: solid 1px rgba(200, 200, 200, 0.81);
+    margin-right: 2%;
+}
+
+.generalInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.avatar {
+}
+
+.profileMenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profileMenu li a {
+    text-decoration: none;
+}

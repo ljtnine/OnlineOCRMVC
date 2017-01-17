@@ -28,10 +28,11 @@
             <img src="" alt="Avatar">
         </div>
         <div>
-            <p>Info - login</p>
-            <p>Info - Name</p>
-            <p>Info - birthday</p>
-            <p>Info - registration date</p>
+            <p th:text="${user.login}">Info - login</p>
+            <p th:text="${user.name}">Info - Name</p>
+            <p th:text="${user.id}">>Info - id</p>
+            <p th:text="${user.email}">Info - email</p>
+            <p th:text="${user.passwordHash}">Info - passwordHash</p>
         </div>
         <div>
             <ul class="profileMenu">
@@ -47,16 +48,7 @@
     </div>
 </div>
 
-
 <div class="footer shadow"></div>
-
 </body>
 </html>
-
-<!--
-<span th:text="${user.login}"></span> <br>
-<span th:text="${user.name}"></span> <br>
-<span th:text="${user.id}"></span><br>
-<span th:text="${user.email}"></span><br>
-<span th:text="${user.passwordHash}"></span><br> -->
 
