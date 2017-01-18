@@ -2,13 +2,11 @@ package com.onlineocr.nick.controller;
 
 
 import com.onlineocr.nick.DAO.UserDAO;
-import com.onlineocr.nick.DAO.UserService;
 import com.onlineocr.nick.model.actions.ServiceClass;
 import com.onlineocr.nick.model.entity.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -41,6 +39,12 @@ public class OcrServiceController {
         return "index";
     }
 
+    @RequestMapping(value = "/logon", method = RequestMethod.GET)
+    public String logon() {
+        logger.info("Trying to login . . .");
+        return "logon";
+    }
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(User user) {
         logger.info("Registration page is opened");
@@ -51,6 +55,25 @@ public class OcrServiceController {
         else {
             logger.info("User is already saved in session");
             return "redirect:/profile";
+        }
+    }
+
+    @RequestMapping(value = "/success", method = RequestMethod.POST)
+    public ModelAndView success(HttpServletRequest request) {
+        logger.info("Trying to login");
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.getUserByLoginAndPassword(request.getParameter("login"), request.getParameter("password"));
+
+        modelAndView.addObject("user", user);
+
+        if(user != null && user.getId() != null) {
+            logger.info("Success!");
+            modelAndView.setViewName("success");
+            return modelAndView;
+        } else {
+            logger.info("Incorrect login/password");
+            modelAndView.setViewName("redirect:/logon");
+            return modelAndView;
         }
     }
 
@@ -74,9 +97,16 @@ public class OcrServiceController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String profile() {
+    public String profile(User user) {
         logger.info("Profile page is opened");
-        return "profile";
+        if(user.getId() == null) {
+            logger.info("User is null");
+            return "redirect:/logon";
+        }
+        else {
+            logger.info("User is already saved in session");
+            return "/profile";
+        }
     }
 
     @RequestMapping(value = "/registered", method = RequestMethod.POST)

@@ -11,7 +11,6 @@ public interface DAO<T> {
     void save(T e);
     void delete(T e);
     void deleteById(long id);
-    void updateById(long id);
     void update(T e);
     List<T> getAll();
     T getById(long id);

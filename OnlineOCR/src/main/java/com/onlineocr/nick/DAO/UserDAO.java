@@ -12,9 +12,9 @@ public interface UserDAO {
     void save(User user);
     void delete(User user);
     void deleteById(long id);
-    void updateById(long id);
     void update(User user);
     List<User> getAll();
     User getById(long id);
     Session getCurrentSession();
+    User getUserByLoginAndPassword(String login, String password);
 }

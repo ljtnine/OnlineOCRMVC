@@ -101,13 +101,13 @@ OCR.registration = function () {
     var registration = form["register"];
 
     function invalid(elementId) {
-        form[elementId].classList.remove("valid")
+        form[elementId].classList.remove("valid");
         form[elementId].classList.add("invalid");
     }
 
     function valid(elementId) {
-        form[elementId].classList.add("valid")
         form[elementId].classList.remove("invalid");
+        form[elementId].classList.add("valid");
     }
 
     function realTimeValidation (elementId) {
@@ -201,6 +201,64 @@ OCR.registration = function () {
 }
 
 /**
+ * Function for logon page.
+ */
+OCR.logon = function () {
+    var form = document.forms[0];
+    var logonButton = document.getElementById("logon");
+    var registerButton = document.getElementById("register");
+
+    function invalid(elementId) {
+        form[elementId].classList.remove("valid")
+        form[elementId].classList.add("invalid");
+    }
+
+    function valid(elementId) {
+        form[elementId].classList.remove("invalid")
+        form[elementId].classList.add("valid");
+    }
+
+    function formValidation() {
+        var login = document.getElementById("login");
+        var password = document.getElementById("password");
+
+        if(login.value.length === 0) {
+            invalid(login.id);
+            login.focus();
+            return false;
+        }
+
+        if(password.value.length === 0) {
+            invalid(password.id);
+            password.focus();
+            return false;
+        }
+        return true;
+    }
+
+    form.addEventListener("click", function (e) {
+        form[e.target.id].classList.remove("invalid");
+        document.querySelector(".logon .errorMessage").style.display = "none";
+    });
+
+    logonButton.addEventListener("click", function () {
+        if(formValidation()) {
+            form.action = "success";
+            form.submit();
+        } else {
+            document.querySelector(".logon .errorMessage").style.display = "block";
+            return false;
+        }
+    }, true);
+
+    registerButton.addEventListener("click", function () {
+        form.action = "registration";
+        form.method = "GET";
+        form.submit();
+    }, true);
+}
+
+/**
  * Main function.
  * @returns depends on title of page. Return special function for each page
  */
@@ -211,6 +269,9 @@ OCR.main = function () {
     }
     if(title === "Registration") {
         return this.registration;
+    }
+    if(title === "Logon") {
+        return this.logon;
     }
 }
 

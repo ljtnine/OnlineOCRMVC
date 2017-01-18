@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Success!</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Refresh" content="5; url=/" />
+    <link rel="stylesheet" href="resources/css/style.css">
+</head>
+<body>
+<div class="header shadow">
+
+    <div class="menuContainer">
+        <ul class="menu">
+            <a href="/"><li>Home</li></a>
+            <a href=""><li>OCR</li></a>
+            <a href=""><li>LOGO</li></a>
+            <a href=""><li>Apps</li></a>
+            <a href="profile"><li>Profile</li></a>
+        </ul>
+    </div>
+
+</div>
+
+<div class="main greeting shadow">
+    <p>Hello <span th:text="${user.login}">{username}</span>!</p>
+    <a href="">You will be automatically redirected to your profile page. If after few seconds you will not be redirected, please, click on this link.</a>
+</div>
+
+<div class="footer shadow"></div>
+</body>
+</html>

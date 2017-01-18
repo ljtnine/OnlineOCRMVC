@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logon</title>
+    <link rel="stylesheet" href="resources/css/style.css">
+    <script src="resources/js/ocrScript.js"></script>
+</head>
+<body>
+<div class="header shadow">
+
+    <div class="menuContainer">
+        <ul class="menu">
+            <a href="/"><li>Home</li></a>
+            <a href=""><li>OCR</li></a>
+            <a href=""><li>LOGO</li></a>
+            <a href=""><li>Apps</li></a>
+            <a href="profile"><li>Profile</li></a>
+        </ul>
+    </div>
+
+</div>
+
+<div class="main logon shadow">
+    <form method="post" action="" name="logon">
+        <div class="errorMessage">
+            <span>Login\password is incorrect. Please, try again or pass the registration.</span>
+        </div>
+        <div>
+            <label for="login">Login</label>
+            <input  type="text" id="login" name="login" required>
+        </div>
+
+        <div>
+            <label for="login">Password</label>
+            <input  type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="button" id="logon">Log on</button>
+            <button type="button" id="register">Register</button>
+        </div>
+    </form>
+</div>
+
+<div class="footer shadow"></div>
+</body>
+</html>

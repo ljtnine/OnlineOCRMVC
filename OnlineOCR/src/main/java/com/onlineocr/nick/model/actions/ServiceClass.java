@@ -21,6 +21,7 @@ public class ServiceClass {
         properties.put("mail.protocol", "smtps");
         properties.put("mail.host", "smtp.gmail.com");
         properties.put("mail.smtps.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.debug", "true");
 
         properties.put("mail.user", System.getenv("email"));
@@ -28,7 +29,7 @@ public class ServiceClass {
 
 
         sender.setJavaMailProperties(properties);
-        sender.setPort(465);
+        sender.setPort(587);
         sender.setUsername(System.getenv("email"));
         sender.setPassword(System.getenv("pass"));
 
